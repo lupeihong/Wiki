@@ -4,12 +4,12 @@
 ## 1. Slicing
 
 开发者把App安装包上传到AppStore后，Apple服务会自动对安装包切割为不同的应用变体(App variant)，当用户下载安装包时，系统会根据设备型号下载安装对应的单个应用变体。（你不需要做什么，iOS9.0.2以上就支持）
-![](https://images2015.cnblogs.com/blog/848953/201605/848953-20160509112307155-139525806.png)
+![](https://github.com/lupeihong/Wiki/blob/master/AppThinning/848953-20160509112307155-139525806.png)
 
  ## 2. Bitcode
 
 开启Bitcode编译后，可以使得开发者上传App时只需上传Intermediate Representation(中间件)，为二进制数据表示的格式的中间码，而非最终的可执行二进制文件。 在用户下载App之前，AppStore会自动编译中间件，产生设备所需的执行文件供用户下载安装。也就是当我们提交程序到 App Store上时， Xcode 会将程序编译为一个中间表现形式( bitcode )。然后 App store 会再将这个 Bitcode 编译为可执行的64位或32位程序。苹果会根据下载应用的用户的手机指令集类型生成只有该指令集的二进制，进行下发
-![](https://images2015.cnblogs.com/blog/848953/201605/848953-20160509112343234-1404242667.jpg)
+![](https://github.com/lupeihong/Wiki/blob/master/AppThinning/848953-20160509112343234-1404242667.jpg)
 
 所以，通过这个方式，我们可以做到架构级别的App Slicing。
 
@@ -37,5 +37,5 @@ In fact, app slicing handles the majority of the app thinning process. ‘App Sl
 
 ORD(随需资源)是指开发者对资源添加标签上传后，系统会根据App运行的情况，动态下载并加载所需资源，而在存储空间不足时，自动删除这类资源。 
 这可能在游戏中应用场景会多一些。你可以用 tag 来组织像图像或者声音这样的资源，比如把它们标记为 level1，level2 这样。然后一开始只需要下载 level1 的内容，在玩的过程中再去下载 level2。或者也可以通过这个来推后下载那些需要内购才能获得的资源文件。
-![](https://images2015.cnblogs.com/blog/848953/201605/848953-20160509112524062-1295651576.png)
+![](https://github.com/lupeihong/Wiki/blob/master/AppThinning/848953-20160509112524062-1295651576.png)
 看起来更像是按需加载网络图片，并作缓存处理。而On-Demand Resources只是将这个服务交由苹果来处理
